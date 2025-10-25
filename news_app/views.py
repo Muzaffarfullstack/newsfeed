@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import News, Category
 from .forms import ContactForm
 from django.http import HttpResponse
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, UpdateView, DeleteView, CreateView
+from django.urls import reverse_lazy
 
 
 def news_list(request):
@@ -98,3 +99,25 @@ class SportNewsView(ListView):
     def get_queryset(self):
         news = self.model.published.all().filter(category__name='Sport')
         return news
+    
+
+class NewsUpdateView(UpdateView):
+    model = News
+    fields = ('title', 'body', 'image', 'category', 'status')
+    template_name = 'crud/news_edit.html'
+    slug_field = 'slug'
+    slug_url_kwarg = 'news'
+
+
+class NewsDeleteView(DeleteView):
+    model = News
+    template_name = 'crud/news_delete.html'
+    success_url = reverse_lazy('home_page')
+    slug_field = 'slug'
+    slug_url_kwarg = 'news'
+
+
+class NewsCreateView(CreateView):
+    model = News
+    template_name = 'crud/news_create.html'
+    fields = ('title', 'slug', 'image', 'body', 'category', 'status')

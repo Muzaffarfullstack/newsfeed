@@ -1,0 +1,23 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} <title>Foydalanuvchi sahifasi</title>{% endblock title %}
+
+{% block content %}
+    <h3>Xush kelibsiz, {{ user.username }}</h3>
+    <p>
+    <form method="post" action="{% url 'logout' %}" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;">
+            Chiqib ketish
+        </button>
+    </form>
+    </p>
+    <h2>Siz haqingizdagi ma'lumotlar</h2>
+    <label>Username: </label> <input value="{{ user.username }}" readonly><br>
+    <label>Email: </label> <input value="{{ user.email }}" readonly><br>
+    <label>Ismingiz: </label> <input value="{{ user.firstname }}" readonly><br>
+    <label>Familyangiz: </label> <input value="{{ user.lastname }}" readonly><br>
+
+    <h4><a href="{% url 'password_change' %}" style=" color: red ">Parolni almashtirish</a></h4>
+{% endblock content %}

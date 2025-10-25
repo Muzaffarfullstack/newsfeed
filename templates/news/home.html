@@ -75,7 +75,6 @@
                             src="{{ local.image.url }}"
                           />
                           <span class="overlay"></span>
-                        </a>
                         <figcaption>
                           <a href="{{ local.get_absolute_url }}"
                             >{{ local.title | truncatewords:5  }}</a
@@ -85,6 +84,7 @@
                           {{ local.title }}
                         </p>
                       </figure>
+                      </a>
                     </li>
                      {% endif %}
                     {% endfor %}

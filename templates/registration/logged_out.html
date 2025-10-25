@@ -1,0 +1,15 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}<title>Logout sahifa</title>{% endblock title %}
+
+{% block content %}
+    <h2>Veb sahifadan chiqish</h2>
+    <p>Siz vebsahifadan chiqmoqchimisiz?</p>
+    
+    <form method="post" action="{% url 'logout_confirm' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Ha, chiqish</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Yo'q, qaytish</a>
+    </form>
+{% endblock content %}
