@@ -7,7 +7,7 @@
     <h1>Foydalanuvchilarni ro'yxatdan o'tkazish</h1>
     <p>Ro'yxatdan o'tish uchun quyidagi formani to'ldiring</p>
     <form method="post">{% csrf_token %}
-        {{ form.as_p }}
+        {{ user_form.as_p }}
         <button type="submit">Jo'natish</button>
     </form>
 {% endblock content %}
